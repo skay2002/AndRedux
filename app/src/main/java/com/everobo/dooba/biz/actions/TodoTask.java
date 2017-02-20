@@ -68,12 +68,12 @@ public class TodoTask extends Task.TaskImpl<TodoTask.TodoActionCreator,TodoStore
         }
 
         public void toggleComplete(Todo todo) {
-            String type = todo.completed ?
+            String type = todo.getCompleted() ?
                     TodoTask.TODO_UNDO_COMPLETE :
                     TodoTask.TODO_COMPLETE;
             dispatcher.dispatch(
                     createAction(type,
-                            TodoTask.KEY_ID, todo.id
+                            TodoTask.KEY_ID, todo.getId()
                     ));
         }
 

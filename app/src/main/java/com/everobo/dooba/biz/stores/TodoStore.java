@@ -111,7 +111,7 @@ public class TodoStore extends Store<ArrayMapAction> {
   private void updateText(long id, String message) {
     Todo todo = getById(id);
     if (todo != null) {
-      todo.message = message;
+      todo.setMessage(message);
     }
   }
 
@@ -119,7 +119,7 @@ public class TodoStore extends Store<ArrayMapAction> {
     Iterator<Todo> iter = todos.iterator();
     while (iter.hasNext()) {
       Todo todo = iter.next();
-      if (todo.completed) {
+      if (todo.getCompleted()) {
         iter.remove();
       }
     }
@@ -135,7 +135,7 @@ public class TodoStore extends Store<ArrayMapAction> {
 
   private boolean areAllComplete() {
     for (Todo todo : todos) {
-      if (!todo.completed) {
+      if (!todo.getCompleted()) {
         return false;
       }
     }
@@ -144,14 +144,14 @@ public class TodoStore extends Store<ArrayMapAction> {
 
   private void updateAllComplete(boolean complete) {
     for (Todo todo : todos) {
-      todo.completed = complete;
+      todo.setCompleted(complete);
     }
   }
 
   private void updateComplete(long id, boolean complete) {
     Todo todo = getById(id);
     if (todo != null) {
-      todo.completed = complete;
+      todo.setCompleted(complete);
     }
   }
 
@@ -165,7 +165,7 @@ public class TodoStore extends Store<ArrayMapAction> {
     Iterator<Todo> iter = todos.iterator();
     while (iter.hasNext()) {
       Todo todo = iter.next();
-      if (todo.id == id) {
+      if (todo.getId() == id) {
         lastDeleted = todo.clone();
         iter.remove();
         break;
@@ -177,7 +177,7 @@ public class TodoStore extends Store<ArrayMapAction> {
     Iterator<Todo> iter = todos.iterator();
     while (iter.hasNext()) {
       Todo todo = iter.next();
-      if (todo.id == id) {
+      if (todo.getId() == id) {
         return todo;
       }
     }

@@ -26,6 +26,6 @@ public abstract class Store<T extends Action> {
 
   public abstract void onAction(T action);
 
-  public class StoreChangeEvent {
+  public static class StoreChangeEvent {
   }
 }

@@ -21,7 +21,7 @@ public class TodoTask extends Task.TaskImpl<TodoTask.TodoActionCreator,TodoStore
     public TodoTask() {
         super(
                 TodoActionCreator.getInstance(Dispatcher.getInstance()) ,
-                TodoStore.getInstance()
+                TodoStore.INSTANCE
         );
     }
 

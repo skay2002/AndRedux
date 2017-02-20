@@ -6,20 +6,18 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-public class AbsViewHolder extends RecyclerView.ViewHolder {
+class AbsViewHolder extends RecyclerView.ViewHolder {
 
   private SparseArray<View> views;
   private View itemView;
-  private View.OnClickListener onClickListener;
-  private View.OnLongClickListener onLongClickListener;
 
-  public AbsViewHolder(View itemView) {
+  AbsViewHolder(View itemView) {
     super(itemView);
     this.itemView = itemView;
     views = new SparseArray<>();
   }
 
-  public <T extends View> T getView(int id) {
+  <T extends View> T getView(int id) {
     View view;
     if (null != views.get(id)) {
       view = views.get(id);
@@ -30,7 +28,7 @@ public class AbsViewHolder extends RecyclerView.ViewHolder {
     return (T) view;
   }
 
-  public AbsViewHolder setText(int id, CharSequence charSequence) {
+  AbsViewHolder setText(int id, CharSequence charSequence) {
     View view;
     TextView textView;
     if (charSequence == null) {
@@ -44,7 +42,7 @@ public class AbsViewHolder extends RecyclerView.ViewHolder {
     return this;
   }
 
-  public AbsViewHolder setCheck(int id, boolean checked) {
+  AbsViewHolder setCheck(int id, boolean checked) {
     View view;
     CheckBox checkBox;
     if (null != (view = getView(id))) {
@@ -55,21 +53,19 @@ public class AbsViewHolder extends RecyclerView.ViewHolder {
     return this;
   }
 
-  public void setClickable(boolean clickable){
+  void setClickable(boolean clickable){
     itemView.setClickable(clickable);
   }
 
-  public void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
-    this.onLongClickListener = onLongClickListener;
+  void setOnLongClickListener(View.OnLongClickListener onLongClickListener) {
     if (onLongClickListener != null) {
-      itemView.setOnLongClickListener(this.onLongClickListener);
+      itemView.setOnLongClickListener(onLongClickListener);
     }
   }
 
-  public void setOnClickListener(View.OnClickListener onClickListener) {
-    this.onClickListener = onClickListener;
+  void setOnClickListener(View.OnClickListener onClickListener) {
     if (onClickListener != null) {
-      itemView.setOnClickListener(this.onClickListener);
+      itemView.setOnClickListener(onClickListener);
     }
   }
 

@@ -33,7 +33,7 @@ public class TodoTask extends Task.TaskImpl<TodoTask.TodoActionCreator,TodoStore
             this.dispatcher = dispatcher;
         }
 
-        public static TodoActionCreator getInstance(Dispatcher dispatcher) {
+        static TodoActionCreator getInstance(Dispatcher dispatcher) {
 
             if (null == instance) {
                 instance = new TodoActionCreator(dispatcher);

@@ -10,13 +10,13 @@ import java.util.List;
 
 public abstract class AbsAdapter<T, A> extends RecyclerView.Adapter<AbsViewHolder> {
 
-  protected A actionCreator;
-  protected List<T> datas;
-  protected Context context;
-  protected int[] layoutId;
-  protected AbsViewHolder[] viewHolders;
+  A actionCreator;
+  List<T> datas;
+  Context context;
+  private int[] layoutId;
+  private AbsViewHolder[] viewHolders;
 
-  public AbsAdapter(@NonNull A actionCreator, @NonNull int... layoutId) {
+  AbsAdapter(@NonNull A actionCreator, @NonNull int... layoutId) {
     this.datas = new ArrayList<>();
     this.actionCreator = actionCreator;
     this.layoutId = layoutId;

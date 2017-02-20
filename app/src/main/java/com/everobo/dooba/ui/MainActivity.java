@@ -18,12 +18,7 @@ import com.everobo.dooba.biz.stores.TodoStore;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView dataList;
     private AppCompatEditText editor;
-    private AppCompatButton add;
-    private AppCompatButton completeAll;
-    private AppCompatButton destroyComplete;
-
     private TodoAdapter todoAdapter;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        dataList = (RecyclerView) findViewById(R.id.rv);
-        add = (AppCompatButton) findViewById(R.id.add_todo);
-        completeAll = (AppCompatButton) findViewById(R.id.complete_all);
-        destroyComplete = (AppCompatButton) findViewById(R.id.destroy_complete);
+        RecyclerView dataList = (RecyclerView) findViewById(R.id.rv);
+        AppCompatButton add = (AppCompatButton) findViewById(R.id.add_todo);
+        AppCompatButton completeAll = (AppCompatButton) findViewById(R.id.complete_all);
+        AppCompatButton destroyComplete = (AppCompatButton) findViewById(R.id.destroy_complete);
         editor = (AppCompatEditText) findViewById(R.id.editor);
 
         add.setOnClickListener(new View.OnClickListener() {

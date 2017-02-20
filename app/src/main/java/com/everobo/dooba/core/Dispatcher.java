@@ -17,16 +17,16 @@ public class Dispatcher {
     return instance;
   }
 
-  Dispatcher() {
+  private Dispatcher() {
   }
 
-  public void register(final Store store) {
+  void register(final Store store) {
     if (!stores.contains(store)) {
       stores.add(store);
     }
   }
 
-  public void unregister(final Store store) {
+  void unregister(final Store store) {
     stores.remove(store);
   }
 

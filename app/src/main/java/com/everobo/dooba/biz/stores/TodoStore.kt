@@ -14,20 +14,16 @@ import java.util.ArrayList
 
 object TodoStore : Store<ArrayMapAction>() {
 
-    private val todos: MutableList<Todo>
+    private val todos: MutableList<Todo> = ArrayList<Todo>()
     private var lastDeleted: Todo? = null
 
     fun getTodos(): List<Todo> {
         return todos
     }
 
-    fun canUndo(): Boolean {
-        return lastDeleted != null
-    }
-
-    init {
-        todos = ArrayList<Todo>()
-    }
+//    fun canUndo(): Boolean {
+//        return lastDeleted != null
+//    }
 
 
     @Subscribe
@@ -116,12 +112,7 @@ object TodoStore : Store<ArrayMapAction>() {
     }
 
     private fun areAllComplete(): Boolean {
-        for (todo in todos) {
-            if (!todo.completed) {
-                return false
-            }
-        }
-        return true
+        return todos.all { it.completed }
     }
 
     private fun updateAllComplete(complete: Boolean) {
@@ -144,21 +135,21 @@ object TodoStore : Store<ArrayMapAction>() {
     }
 
     private fun destroy(id: Long) {
-        val iter = todos.iterator()
-        while (iter.hasNext()) {
-            val todo = iter.next()
+        val iterator = todos.iterator()
+        while (iterator.hasNext()) {
+            val todo = iterator.next()
             if (todo.id == id) {
                 lastDeleted = todo.clone()
-                iter.remove()
+                iterator.remove()
                 break
             }
         }
     }
 
     private fun getById(id: Long): Todo? {
-        val iter = todos.iterator()
-        while (iter.hasNext()) {
-            val todo = iter.next()
+        val iterator = todos.iterator()
+        while (iterator.hasNext()) {
+            val todo = iterator.next()
             if (todo.id == id) {
                 return todo
             }
@@ -170,6 +161,6 @@ object TodoStore : Store<ArrayMapAction>() {
         todos.add(clone)
     }
 
-    val TAG = TodoStore::class.java.simpleName
+    val TAG = TodoStore::class.java.simpleName!!
 
 }

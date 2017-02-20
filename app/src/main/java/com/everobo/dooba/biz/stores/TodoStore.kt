@@ -14,7 +14,7 @@ import java.util.ArrayList
 
 object TodoStore : Store<ArrayMapAction>() {
 
-    private val todos: MutableList<Todo> = ArrayList<Todo>()
+    private val todos: MutableList<Todo> = ArrayList()
     private var lastDeleted: Todo? = null
 
     fun getTodos(): List<Todo> {
@@ -112,7 +112,7 @@ object TodoStore : Store<ArrayMapAction>() {
     }
 
     private fun areAllComplete(): Boolean {
-        return todos.all { it.completed }
+        return todos.all(Todo::completed)
     }
 
     private fun updateAllComplete(complete: Boolean) {
